@@ -7,51 +7,90 @@
 <style>
 /* Genel ayarlar */
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-body { background: #111; color: #fff; }
+body { background: #111; color: #fff; overflow-x: hidden; }
+
+/* Animasyonlu yapraklar */
+.leaf {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url('https://i.ibb.co/ZHcBv6f/leaf.png') no-repeat center/contain;
+  top: -50px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+@keyframes fall {
+  0% { transform: translateY(-50px) rotate(0deg); opacity:0; }
+  50% { opacity:0.8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}
 
 /* Menü */
 nav {
   display: flex; justify-content: space-between; align-items: center;
   background: linear-gradient(90deg, #ff6600, #ff8800);
   padding: 15px 50px;
-  box-shadow: 0 4px 10px #000;
+  box-shadow: 0 4px 15px #000;
+  position: sticky; top: 0; z-index: 100;
 }
-nav .logo { font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 5px #000; }
+nav .logo { font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 5px #000; cursor:pointer; transition:0.3s;}
+nav .logo:hover { transform: scale(1.1); }
 nav ul { list-style: none; display: flex; gap: 30px; }
 nav ul li a {
   text-decoration: none; color: #fff; font-weight: 600;
-  padding: 8px 15px; border-radius: 6px; transition: 0.3s;
+  padding: 10px 20px; border-radius: 8px; transition: 0.3s;
+  position: relative;
 }
-nav ul li a:hover { background: rgba(0,0,0,0.2); }
+nav ul li a:hover {
+  background: rgba(0,0,0,0.2);
+}
+nav ul li a::after {
+  content: ''; position: absolute; width: 0%; height: 2px; bottom: 0; left:0;
+  background: #fff; transition: 0.3s;
+}
+nav ul li a:hover::after { width: 100%; }
 
 /* Discord butonu */
 .discord-btn {
   padding: 10px 20px; background: #7289da; color: #fff;
-  text-decoration: none; border-radius: 8px; font-weight: bold;
-  transition: 0.3s;
+  text-decoration: none; border-radius: 10px; font-weight: bold;
+  transition: 0.3s; box-shadow: 0 0 15px #7289da80;
 }
-.discord-btn:hover { background: #5b6eae; }
+.discord-btn:hover { background: #5b6eae; box-shadow: 0 0 25px #7289daaa; }
 
 /* Banner */
 .banner {
-  text-align: center; padding: 100px 20px;
+  text-align: center; padding: 120px 20px;
   background: linear-gradient(180deg, #ff6600, #ff8800);
-  color: #fff; text-shadow: 0 0 10px #000;
+  color: #fff; text-shadow: 0 0 15px #000;
+  position: relative; overflow: hidden;
 }
-.banner h1 { font-size: 3rem; margin-bottom: 15px; }
+.banner h1 { font-size: 3rem; margin-bottom: 20px; }
 .banner p { font-size: 1.3rem; }
 
 /* Server Info */
 .server-info {
   max-width: 800px; margin: 50px auto; background: #222;
-  padding: 30px; border-radius: 15px; box-shadow: 0 0 15px #ff6600aa;
+  padding: 30px; border-radius: 20px; box-shadow: 0 0 25px #ff6600aa;
   text-align: center;
 }
-.server-info h2 { color: #ff8800; margin-bottom: 15px; }
+.server-info h2 { color: #ff8800; margin-bottom: 20px; }
 .server-info p { font-size: 1.1rem; line-height: 1.5; }
 </style>
 </head>
 <body>
+
+<!-- Yapraklar -->
+<script>
+for(let i=0;i<30;i++){
+  let leaf = document.createElement('div');
+  leaf.className='leaf';
+  leaf.style.left = Math.random()*100+'vw';
+  leaf.style.animationDuration = 5 + Math.random()*5 +'s';
+  leaf.style.transform = `scale(${0.5 + Math.random()})`;
+  document.body.appendChild(leaf);
+}
+</script>
 
 <nav>
   <div class="logo">🌿 GrowLeaf</div>
