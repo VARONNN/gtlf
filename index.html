@@ -298,5 +298,76 @@ function changeLang(lang){
 </body>
 </html>
 
+<!-- Hesap Aç / Kayıt Modal -->
+<div id="account-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:300;">
+  <div style="background:#222; padding:40px; border-radius:20px; max-width:400px; width:90%; position:relative; text-align:center; box-shadow:0 0 30px #ff8800aa;">
+    <button class="close-modal" id="close-account-modal">&times;</button>
+    
+    <div id="login-form">
+      <h2 style="color:#ff8800;">Giriş Yap</h2>
+      <input type="text" placeholder="Kullanıcı Adı" id="login-user" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
+      <input type="password" placeholder="Şifre" id="login-pass" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
+      <button id="login-submit" style="padding:10px 20px; background:#ff8800; color:#fff; border:none; border-radius:6px; cursor:pointer;">Giriş</button>
+    </div>
+    
+    <div id="register-form" style="display:none;">
+      <h2 style="color:#ff8800;">Kayıt Ol</h2>
+      <input type="text" placeholder="Kullanıcı Adı" id="register-user" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
+      <input type="password" placeholder="Şifre" id="register-pass" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
+      <button id="register-submit" style="padding:10px 20px; background:#ff8800; color:#fff; border:none; border-radius:6px; cursor:pointer;">Kayıt</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Hesap butonları
+const accountModal = document.getElementById('account-modal');
+const loginBtn = document.createElement('button');
+const registerBtn = document.createElement('button');
+loginBtn.id = 'login-btn'; loginBtn.className = 'account-btn'; loginBtn.innerText = 'Giriş Yap';
+registerBtn.id = 'register-btn'; registerBtn.className = 'account-btn'; registerBtn.innerText = 'Kayıt Ol';
+document.querySelector('nav ul').appendChild(loginBtn);
+document.querySelector('nav ul').appendChild(registerBtn);
+
+const closeAccountModal = document.getElementById('close-account-modal');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+
+loginBtn.addEventListener('click', () => {
+  accountModal.style.display = 'flex';
+  loginForm.style.display = 'block';
+  registerForm.style.display = 'none';
+});
+registerBtn.addEventListener('click', () => {
+  accountModal.style.display = 'flex';
+  loginForm.style.display = 'none';
+  registerForm.style.display = 'block';
+});
+closeAccountModal.addEventListener('click', () => {
+  accountModal.style.display = 'none';
+});
+
+// Form butonları
+document.getElementById('login-submit').addEventListener('click', () => {
+  const user = document.getElementById('login-user').value;
+  const pass = document.getElementById('login-pass').value;
+  if(user && pass){
+    alert(`Giriş başarılı! Kullanıcı: ${user}`);
+    accountModal.style.display='none';
+  } else alert('Lütfen kullanıcı adı ve şifre girin.');
+});
+
+document.getElementById('register-submit').addEventListener('click', () => {
+  const user = document.getElementById('register-user').value;
+  const pass = document.getElementById('register-pass').value;
+  if(user && pass){
+    alert(`Kayıt başarılı! Kullanıcı: ${user}`);
+    accountModal.style.display='none';
+  } else alert('Lütfen kullanıcı adı ve şifre girin.');
+});
+</script>
+
+
+
 
 
