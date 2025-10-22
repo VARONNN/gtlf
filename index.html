@@ -8,7 +8,7 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-height:100vh; }
 
-/* Emoji yapraklar */
+/* Leaf emojis */
 .leaf {
   position: absolute;
   top: -50px;
@@ -18,7 +18,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  color: orange; /* 🍃 renk turuncu */
+  color: orange; /* 🍃 orange color */
 }
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg); opacity:0; }
@@ -26,7 +26,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
 }
 
-/* Menü */
+/* Navigation menu */
 nav {
   display:flex; justify-content:space-between; align-items:center;
   background: linear-gradient(90deg,#ff6600,#ff8800);
@@ -44,12 +44,12 @@ nav ul li a:hover::after { width:100%; }
 .discord-btn:hover { background:#5b6eae; box-shadow:0 0 25px #7289daaa; }
 .language-select { background:rgba(255,255,255,0.2); color:#fff; border-radius:6px; padding:5px 10px; font-weight:bold; cursor:pointer; }
 
-/* Banner */
+/* Banner section */
 .banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden; height:50vh;}
 .banner h1 { font-size:3rem; margin-bottom:20px;}
 .banner p { font-size:1.3rem; }
 
-/* Başla Butonu */
+/* Start Button */
 .start-btn {
   margin-top:30px;
   padding:20px 60px;
@@ -68,12 +68,12 @@ nav ul li a:hover::after { width:100%; }
   box-shadow:0 0 50px #ff8800aa;
 }
 
-/* Server Info */
+/* Server Information */
 .server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
 .server-info p { font-size:1.1rem; line-height:1.5; }
 
-/* Modal */
+/* Modal window */
 #start-modal {
   display:none;
   position:fixed;
@@ -111,7 +111,7 @@ nav ul li a:hover::after { width:100%; }
   transform:scale(1.1);
   box-shadow:0 0 30px #ff8800aa;
 }
-/* Çarpı butonu */
+/* Close button */
 .close-modal {
   position:absolute;
   top:15px;
@@ -175,21 +175,21 @@ nav ul li a:hover::after { width:100%; }
     <button id="pc-btn">PC</button>
     <button id="ios-btn">iOS</button>
     <div class="modal-text" id="android-text" style="display:none;">
-      <p>1 - Önce Güç Tüneli'ni indir</p>
-      <p>2 - Güç Tüneli'ne gir</p>
-      <p>3 - Sağ üst köşedeki 3 çizgi simgesine tıkla</p>
-      <p>4 - Sunucular metnini göreceksiniz. Sunucular metninin yanındaki Ayarlar simgesine tıklayın.</p>
-      <p>5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı alana yapıştırın:</p>
+      <p>1 - First, download the Power Tunnel</p>
+      <p>2 - Enter the Power Tunnel</p>
+      <p>3 - Click on the three lines icon in the top right corner</p>
+      <p>4 - You will see the text for servers. Click the Settings icon next to the servers text.</p>
+      <p>5 - Click on the Main File URL section and paste the link below:</p>
       <p><a href="https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow" target="_blank" style="color:#ff8800;">Link</a></p>
-      <p>6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.</p>
-      <p>7 - Sunucu adı için <b>growleaf</b> yaz. Büyük harf kullanma. İsim ve şifre boş bırakılabilir.</p>
-      <p>8 - Hazırsın.</p>
+      <p>6 - Open the Power Tunnel and log into Growtopia.</p>
+      <p>7 - Enter <b>growleaf</b> for the server name. Do not use capital letters. You may leave the name and password fields blank.</p>
+      <p>8 - You are ready.</p>
     </div>
   </div>
 </div>
 
 <script>
-// Düşen yaprak emojileri
+// Falling leaf emojis
 for(let i=0;i<30;i++){
   const leaf = document.createElement('div');
   leaf.className='leaf';
@@ -201,7 +201,7 @@ for(let i=0;i<30;i++){
   document.body.appendChild(leaf);
 }
 
-// Modal açma
+// Opening modal
 const startBtn = document.getElementById('start-btn');
 const startModal = document.getElementById('start-modal');
 const closeModal = document.getElementById('close-modal');
@@ -213,19 +213,19 @@ startBtn.addEventListener('click', () => {
   androidText.style.display='none';
 });
 
-// Çarpı butonu ile kapatma
+// Close with the close button
 closeModal.addEventListener('click', () => {
   startModal.style.display = 'none';
   androidText.style.display='none';
 });
 
-// Android butonuna tıklandığında bilgi göster ve linke yönlendir
+// Show information and redirect link when Android button is clicked
 androidBtn.addEventListener('click', () => {
   androidText.style.display='block';
   window.open("https://www.mediafire.com/file/w6hwsjljnbh2t2p/powertunel.apk/file", "_blank");
 });
 
-// Dil çevirisi
+// Language translation
 const translations = {
   en:{
     bannerTitle:"🌟 GrowLeaf Server",
@@ -297,100 +297,49 @@ function changeLang(lang){
 
 </body>
 </html>
-<!-- PC ve iOS İçin Ek Bilgi -->
+<!-- Additional Information for PC and iOS -->
 <div class="modal-text" id="pc-text" style="display:none;">
-  <p>1 - GrowLeaf PC sürümünü açın</p>
-  <p>2 - Sunucu IP'si olarak aşağıdaki adresi kullanın:</p>
+  <p>1 - Open the GrowLeaf PC version</p>
+  <p>2 - Use the following address as the server IP:</p>
   <p><b id="server-ip">123.45.67.89</b></p>
-  <button id="copy-ip-btn">IP'yi Kopyala</button>
-  <p>3 - Sunucuya giriş yapabilirsiniz.</p>
+  <button id="copy-ip-btn">Copy IP</button>
+  <p>3 - You can log into the server.</p>
 </div>
 
 <div class="modal-text" id="ios-text" style="display:none;">
-  <p>1 - GrowLeaf iOS uygulamasını açın</p>
-  <p>2 - Sunucu IP'si veya bağlantı için talimatları takip edin.</p>
+  <p>1 - Open the GrowLeaf iOS application</p>
+  <p>2 - Follow the instructions for server IP or connection.</p>
 </div>
 
 <script>
-// PC ve iOS butonları
+// PC and iOS buttons
 const pcBtn = document.getElementById('pc-btn');
 const iosBtn = document.getElementById('ios-btn');
 const pcText = document.getElementById('pc-text');
 const iosText = document.getElementById('ios-text');
 
-// PC butonuna tıklandığında
+// When the PC button is clicked
 pcBtn.addEventListener('click', () => {
   androidText.style.display = 'none';
   iosText.style.display = 'none';
   pcText.style.display = 'block';
 });
 
-// iOS butonuna tıklandığında
+// When the iOS button is clicked
 iosBtn.addEventListener('click', () => {
   androidText.style.display = 'none';
   pcText.style.display = 'none';
   iosText.style.display = 'block';
 });
 
-// IP kopyalama butonu
+// IP copy button
 const copyIpBtn = document.getElementById('copy-ip-btn');
 copyIpBtn.addEventListener('click', () => {
   const ip = document.getElementById('server-ip').innerText;
   navigator.clipboard.writeText(ip).then(() => {
-    alert('IP kopyalandı: ' + ip);
+    alert('IP copied: ' + ip);
   }).catch(() => {
-    alert('IP kopyalama başarısız oldu.');
+    alert('Failed to copy IP.');
   });
 });
 </script>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GrowLeaf</title>
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-height:100vh; }
-.leaf { position: absolute; top: -50px; font-size: 25px; user-select: none; pointer-events: none; animation-name: fall; animation-timing-function: linear; animation-iteration-count: infinite; color: orange; }
-@keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity:0; } 10% { opacity:1; } 100% { transform: translateY(110vh) rotate(360deg); opacity:0; } }
-nav { display:flex; justify-content:space-between; align-items:center; background: linear-gradient(90deg,#ff6600,#ff8800); padding:15px 50px; box-shadow:0 4px 15px #000; position:sticky; top:0; z-index:100; }
-nav .logo { font-size:1.8rem; font-weight:bold; text-shadow:0 0 5px #000; cursor:pointer; transition:0.3s; }
-nav .logo:hover { transform:scale(1.1); }
-nav ul { list-style:none; display:flex; gap:20px; align-items:center; }
-nav ul li a { text-decoration:none; color:#fff; font-weight:600; padding:8px 15px; border-radius:6px; transition:0.3s; position:relative; }
-nav ul li a:hover { background:rgba(0,0,0,0.2); }
-nav ul li a::after { content:''; position:absolute; width:0%; height:2px; bottom:0; left:0; background:#fff; transition:0.3s; }
-nav ul li a:hover::after { width:100%; }
-.discord-btn { padding:10px 20px; background:#7289da; color:#fff; text-decoration:none; border-radius:10px; font-weight:bold; transition:0.3s; box-shadow:0 0 15px #7289da80; }
-.discord-btn:hover { background:#5b6eae; box-shadow:0 0 25px #7289daaa; }
-.language-select { background:rgba(255,255,255,0.2); color:#fff; border-radius:6px; padding:5px 10px; font-weight:bold; cursor:pointer; }
-.banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden; height:50vh; }
-.banner h1 { font-size:3rem; margin-bottom:20px; }
-.banner p { font-size:1.3rem; }
-.start-btn { margin-top:30px; padding:20px 60px; font-size:1.8rem; font-weight:bold; background:#ff8800; color:#fff; border:none; border-radius:15px; cursor:pointer; transition:0.3s; box-shadow:0 0 25px #ff880080; }
-.start-btn:hover { transform:scale(1.15); box-shadow:0 0 50px #ff8800aa; }
-.server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center; }
-.server-info h2 { color:#ff8800; margin-bottom:20px; }
-.server-info p { font-size:1.1rem; line-height:1.5; }
-#start-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:200; }
-.modal-content { background:#222; padding:40px; border-radius:20px; text-align:left; box-shadow:0 0 30px #ff8800aa; max-width:600px; position:relative; }
-.modal-content h2 { color:#ff8800; margin-bottom:20px; font-size:2rem; text-align:center; }
-.modal-content button { margin:10px; padding:15px 40px; font-size:1.2rem; font-weight:bold; border:none; border-radius:10px; cursor:pointer; background: #ff8800; color:#fff; transition:0.3s; box-shadow:0 0 15px #ff880080; }
-.modal-content button:hover { transform:scale(1.1); box-shadow:0 0 30px #ff8800aa; }
-.close-modal { position:absolute; top:15px; right:20px; font-size:1.5rem; font-weight:bold; background:#ff3300; border:none; color:#fff; border-radius:50%; width:35px; height:35px; cursor:pointer; transition:0.3s; }
-.close-modal:hover { transform:scale(1.2); box-shadow:0 0 15px #ff3300aa; }
-.modal-text { margin-top:20px; font-size:1rem; line-height:1.5; }
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="logo">🌿 GrowLeaf</div>
-  <ul>
-    <li><a href="#home" id="menu-home">Home</a></li>
-    <li><a href="#info" id="menu-info">S
-
-
-
