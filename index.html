@@ -443,4 +443,81 @@ document.getElementById('register-submit').addEventListener('click', () => {
  });
  </script>
 
+<!-- === ANDROID DİL SEÇİMİ VE AÇIKLAMA === -->
+<div id="languageSection" class="hidden text-center mt-6">
+  <h2 class="text-xl font-bold mb-3 text-white">🌐 Dil Seçin / Choose Language / Pilih Bahasa</h2>
+  <div class="flex justify-center gap-3">
+    <button class="px-5 py-2 bg-green-500 text-white rounded-xl hover:bg-green-600 transition" onclick="showGuide('tr')">🇹🇷 Türkçe</button>
+    <button class="px-5 py-2 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition" onclick="showGuide('en')">🇬🇧 English</button>
+    <button class="px-5 py-2 bg-yellow-500 text-white rounded-xl hover:bg-yellow-600 transition" onclick="showGuide('id')">🇮🇩 Indonesia</button>
+  </div>
+</div>
+
+<!-- === AÇIKLAMA METNİ === -->
+<div id="guideSection" class="hidden text-left mt-6 max-w-2xl mx-auto bg-black bg-opacity-60 p-5 rounded-2xl text-white">
+  <h2 class="text-2xl font-bold mb-4">📘 Talimatlar / Instructions</h2>
+  <div id="guideText" class="text-lg leading-relaxed whitespace-pre-line"></div>
+  <button class="mt-5 px-5 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition" onclick="backToLanguages()">⬅️ Geri</button>
+</div>
+
+<script>
+  // Türkçe açıklama (senin yazdığın)
+  const guide_tr = `1 - Önce Güç Tüneli'ni indir
+2 - Güç Tüneli'ne gir
+3 - Sağ üst köşedeki 3 çizgi simgesine tıkla
+4 - Sunucular metnini göreceksiniz. Sunucular metninin yanındaki Ayarlar simgesine tıklayın.
+5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı alana yapıştırın:
+https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow
+6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.
+7 - Sunucu adı için growleaf'i küçük harflerle yaz. Büyük harflerle yazarsan giriş yapamazsın. İsim ve şifre boş bırakılabilir.
+8 - Hazırsın. 🌿`;
+
+  // İngilizce çeviri
+  const guide_en = `1 - First, download Power Tunnel
+2 - Open Power Tunnel
+3 - Tap the three-line icon at the top right
+4 - You will see the "Servers" text. Tap the settings icon next to it.
+5 - Tap the "Main File URL" section and paste the following link:
+https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow
+6 - Open Power Tunnel and log in to Growtopia.
+7 - For the server name, type 'growleaf' in lowercase. If you use uppercase, it won’t work. Username and password can be empty.
+8 - You’re ready. 🌿`;
+
+  // Endonezce çeviri
+  const guide_id = `1 - Pertama, unduh Power Tunnel
+2 - Buka Power Tunnel
+3 - Ketuk ikon tiga garis di kanan atas
+4 - Kamu akan melihat teks "Server". Ketuk ikon pengaturan di sebelahnya.
+5 - Ketuk bagian "Main File URL" dan tempel tautan di bawah ini:
+https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow
+6 - Buka Power Tunnel dan masuk ke Growtopia.
+7 - Untuk nama server, ketik 'growleaf' (huruf kecil semua). Nama pengguna dan kata sandi bisa dikosongkan.
+8 - Kamu siap! 🌿`;
+
+  // Buton bağlantısını değiştir (Android)
+  document.querySelector("button[onclick*='powertunel.apk']").onclick = function() {
+    document.getElementById("deviceSection").classList.add("hidden");
+    document.getElementById("languageSection").classList.remove("hidden");
+  };
+
+  // Dil seçince açıklama göster
+  function showGuide(lang) {
+    document.getElementById("languageSection").classList.add("hidden");
+    document.getElementById("guideSection").classList.remove("hidden");
+    let text = "";
+    if (lang === "tr") text = guide_tr;
+    if (lang === "en") text = guide_en;
+    if (lang === "id") text = guide_id;
+    document.getElementById("guideText").innerText = text;
+  }
+
+  // Geri dön
+  function backToLanguages() {
+    document.getElementById("guideSection").classList.add("hidden");
+    document.getElementById("languageSection").classList.remove("hidden");
+  }
+</script>
+
+
+
 
