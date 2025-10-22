@@ -53,7 +53,6 @@ nav ul li a:hover::after { width:100%; }
 .server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
 .server-info p { font-size:1.1rem; line-height:1.5; }
-
 </style>
 </head>
 <body>
@@ -61,9 +60,11 @@ nav ul li a:hover::after { width:100%; }
 <nav>
   <div class="logo">🌿 GrowLeaf</div>
   <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#info">Server Info</a></li>
+    <li><a href="#home" id="menu-home">Home</a></li>
+    <li><a href="#info" id="menu-info">Server Info</a></li>
     <li><a href="https://discord.gg/ShueAtdt44" target="_blank" class="discord-btn">Discord</a></li>
+    <!-- Extra sağ üst mağaza butonu -->
+    <li><a href="#shop" id="menu-shop-extra" class="discord-btn">Shop</a></li>
     <li>
       <select class="language-select" onchange="changeLang(this.value)">
         <option value="en">English</option>
@@ -84,6 +85,12 @@ nav ul li a:hover::after { width:100%; }
   <p id="info-desc">🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global</p>
 </div>
 
+<!-- Mağaza bölümü -->
+<div class="server-info" id="shop">
+  <h2 id="shop-title">In-Game Shop</h2>
+  <p id="shop-desc">💰 Buy items, upgrades and special boosts directly from the shop!</p>
+</div>
+
 <script>
 // Düşen yaprak emojileri
 for(let i=0;i<30;i++){
@@ -99,18 +106,51 @@ for(let i=0;i<30;i++){
 
 // Dil çevirisi
 const translations = {
-  en:{bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Fun, trading and special events await in GrowLeaf!", infoTitle:"Server Info", infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global", menuHome:"Home", menuInfo:"Server Info"},
-  tr:{bannerTitle:"🌟 GrowLeaf Sunucusu", bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!", infoTitle:"Sunucu Bilgileri", infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global", menuHome:"Ana Sayfa", menuInfo:"Sunucu Bilgileri"},
-  id:{bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!", infoTitle:"Informasi Server", infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global", menuHome:"Beranda", menuInfo:"Informasi Server"}
+  en:{
+    bannerTitle:"🌟 GrowLeaf Server",
+    bannerDesc:"Fun, trading and special events await in GrowLeaf!",
+    infoTitle:"Server Info",
+    infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global",
+    menuHome:"Home",
+    menuInfo:"Server Info",
+    menuShop:"Shop",
+    shopTitle:"In-Game Shop",
+    shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!"
+  },
+  tr:{
+    bannerTitle:"🌟 GrowLeaf Sunucusu",
+    bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
+    infoTitle:"Sunucu Bilgileri",
+    infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global",
+    menuHome:"Ana Sayfa",
+    menuInfo:"Sunucu Bilgileri",
+    menuShop:"Mağaza",
+    shopTitle:"Oyun İçi Mağaza",
+    shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!"
+  },
+  id:{
+    bannerTitle:"🌟 GrowLeaf Server",
+    bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!",
+    infoTitle:"Informasi Server",
+    infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global",
+    menuHome:"Beranda",
+    menuInfo:"Informasi Server",
+    menuShop:"Toko",
+    shopTitle:"Toko In-Game",
+    shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!"
+  }
 };
 
 function changeLang(lang){
-  document.getElementById('banner-title').innerHTML=translations[lang].bannerTitle;
-  document.getElementById('banner-desc').innerHTML=translations[lang].bannerDesc;
-  document.getElementById('info-title').innerHTML=translations[lang].infoTitle;
-  document.getElementById('info-desc').innerHTML=translations[lang].infoDesc;
-  document.querySelector('nav ul li a[href="#home"]').innerHTML=translations[lang].menuHome;
-  document.querySelector('nav ul li a[href="#info"]').innerHTML=translations[lang].menuInfo;
+  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
+  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
+  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
+  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
+  document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
+  document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
+  document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
+  document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
+  document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
 }
 </script>
 
