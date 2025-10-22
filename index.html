@@ -49,6 +49,25 @@ nav ul li a:hover::after { width:100%; }
 .banner h1 { font-size:3rem; margin-bottom:20px;}
 .banner p { font-size:1.3rem; }
 
+/* Başla Butonu */
+.start-btn {
+  margin-top:30px;
+  padding:15px 40px;
+  font-size:1.3rem;
+  font-weight:bold;
+  background:#ff8800;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 20px #ff880080;
+}
+.start-btn:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 40px #ff8800aa;
+}
+
 /* Server Info */
 .server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
@@ -78,6 +97,7 @@ nav ul li a:hover::after { width:100%; }
 <div class="banner" id="home">
   <h1 id="banner-title">🌟 GrowLeaf Server</h1>
   <p id="banner-desc">Fun, trading and special events await in GrowLeaf!</p>
+  <button class="start-btn" id="start-btn">Start</button>
 </div>
 
 <div class="server-info" id="info">
@@ -109,48 +129,46 @@ const translations = {
   en:{
     bannerTitle:"🌟 GrowLeaf Server",
     bannerDesc:"Fun, trading and special events await in GrowLeaf!",
-    infoTitle:"Server Info",
-    infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global",
     menuHome:"Home",
     menuInfo:"Server Info",
     menuShop:"Shop",
     shopTitle:"In-Game Shop",
-    shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!"
+    shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!",
+    startBtn:"Start"
   },
   tr:{
     bannerTitle:"🌟 GrowLeaf Sunucusu",
     bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
-    infoTitle:"Sunucu Bilgileri",
-    infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global",
     menuHome:"Ana Sayfa",
     menuInfo:"Sunucu Bilgileri",
     menuShop:"Mağaza",
     shopTitle:"Oyun İçi Mağaza",
-    shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!"
+    shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!",
+    startBtn:"Başla"
   },
   id:{
     bannerTitle:"🌟 GrowLeaf Server",
     bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!",
-    infoTitle:"Informasi Server",
-    infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global",
     menuHome:"Beranda",
     menuInfo:"Informasi Server",
     menuShop:"Toko",
     shopTitle:"Toko In-Game",
-    shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!"
+    shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!",
+    startBtn:"Mulai"
   }
 };
 
 function changeLang(lang){
   document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
   document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
-  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
-  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
+  document.getElementById('info-title').innerHTML = translations[lang].menuInfo;
+  document.getElementById('info-desc').innerHTML = translations[lang].shopDesc;
   document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
   document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
   document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
   document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
   document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
+  document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
 }
 </script>
 
