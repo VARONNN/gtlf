@@ -5,100 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GrowLeaf</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
-body { background: #111; color: #fff; overflow-x: hidden; }
-
-/* Animasyonlu yapraklar */
-.leaf {
-  position: absolute;
-  width: 30px; height: 30px;
-  background: url('https://i.ibb.co/ZHcBv6f/leaf.png') no-repeat center/contain;
-  top: -50px;
-  animation: fall linear infinite;
-  opacity: 0.8;
-}
-@keyframes fall {
-  0% { transform: translateY(-50px) rotate(0deg); opacity:0; }
-  50% { opacity:0.8; }
-  100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body { background:#111; color:#fff; overflow-x:hidden; }
 
 /* Menü */
 nav {
-  display: flex; justify-content: space-between; align-items: center;
-  background: linear-gradient(90deg, #ff6600, #ff8800);
-  padding: 15px 50px;
-  box-shadow: 0 4px 15px #000;
-  position: sticky; top: 0; z-index: 100;
+  display:flex; justify-content:space-between; align-items:center;
+  background: linear-gradient(90deg,#ff6600,#ff8800);
+  padding:15px 50px; box-shadow:0 4px 15px #000;
+  position:sticky; top:0; z-index:100;
 }
-nav .logo { font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 5px #000; cursor:pointer; transition:0.3s;}
-nav .logo:hover { transform: scale(1.1); }
-nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
-nav ul li a {
-  text-decoration: none; color: #fff; font-weight: 600;
-  padding: 8px 15px; border-radius: 6px; transition: 0.3s;
-  position: relative;
-}
-nav ul li a:hover {
-  background: rgba(0,0,0,0.2);
-}
-nav ul li a::after {
-  content: ''; position: absolute; width: 0%; height: 2px; bottom: 0; left:0;
-  background: #fff; transition: 0.3s;
-}
-nav ul li a:hover::after { width: 100%; }
-
-/* Discord butonu */
-.discord-btn {
-  padding: 10px 20px; background: #7289da; color: #fff;
-  text-decoration: none; border-radius: 10px; font-weight: bold;
-  transition: 0.3s; box-shadow: 0 0 15px #7289da80;
-}
-.discord-btn:hover { background: #5b6eae; box-shadow: 0 0 25px #7289daaa; }
-
-/* Dil Seçimi */
-.language-select {
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
+nav .logo { font-size:1.8rem; font-weight:bold; text-shadow:0 0 5px #000; cursor:pointer; transition:0.3s;}
+nav .logo:hover { transform:scale(1.1);}
+nav ul { list-style:none; display:flex; gap:20px; align-items:center;}
+nav ul li a { text-decoration:none; color:#fff; font-weight:600; padding:8px 15px; border-radius:6px; transition:0.3s; position:relative;}
+nav ul li a:hover { background:rgba(0,0,0,0.2);}
+nav ul li a::after { content:''; position:absolute; width:0%; height:2px; bottom:0; left:0; background:#fff; transition:0.3s;}
+nav ul li a:hover::after { width:100%; }
+.discord-btn { padding:10px 20px; background:#7289da; color:#fff; text-decoration:none; border-radius:10px; font-weight:bold; transition:0.3s; box-shadow:0 0 15px #7289da80; }
+.discord-btn:hover { background:#5b6eae; box-shadow:0 0 25px #7289daaa; }
+.language-select { background:rgba(255,255,255,0.2); color:#fff; border-radius:6px; padding:5px 10px; font-weight:bold; cursor:pointer; }
 
 /* Banner */
-.banner {
-  text-align: center; padding: 120px 20px;
-  background: linear-gradient(180deg, #ff6600, #ff8800);
-  color: #fff; text-shadow: 0 0 15px #000;
-  position: relative; overflow: hidden;
-}
-.banner h1 { font-size: 3rem; margin-bottom: 20px; }
-.banner p { font-size: 1.3rem; }
+.banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden;}
+.banner h1 { font-size:3rem; margin-bottom:20px;}
+.banner p { font-size:1.3rem; }
 
 /* Server Info */
-.server-info {
-  max-width: 800px; margin: 50px auto; background: #222;
-  padding: 30px; border-radius: 20px; box-shadow: 0 0 25px #ff6600aa;
-  text-align: center;
-}
-.server-info h2 { color: #ff8800; margin-bottom: 20px; }
-.server-info p { font-size: 1.1rem; line-height: 1.5; }
+.server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
+.server-info h2 { color:#ff8800; margin-bottom:20px;}
+.server-info p { font-size:1.1rem; line-height:1.5; }
+
+/* Yaprak emojileri */
+.leaf { position:absolute; font-size:25px; user-select:none; pointer-events:none; animation-name:fall; animation-timing-function: linear; }
+@keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity:0; } 50% { opacity:0.8; } 100% { transform: translateY(110vh) rotate(360deg); opacity:0; } }
 </style>
 </head>
 <body>
-
-<!-- Animasyonlu yapraklar -->
-<script>
-for(let i=0;i<30;i++){
-  let leaf = document.createElement('div');
-  leaf.className='leaf';
-  leaf.style.left = Math.random()*100+'vw';
-  leaf.style.animationDuration = 5 + Math.random()*5 +'s';
-  leaf.style.transform = `scale(${0.5 + Math.random()})`;
-  document.body.appendChild(leaf);
-}
-</script>
 
 <nav>
   <div class="logo">🌿 GrowLeaf</div>
@@ -127,40 +70,31 @@ for(let i=0;i<30;i++){
 </div>
 
 <script>
+// Düşen yaprak emojileri
+for(let i=0;i<30;i++){
+  const leaf = document.createElement('div');
+  leaf.className='leaf';
+  leaf.innerText='🍃';
+  leaf.style.left=Math.random()*100+'vw';
+  leaf.style.animationDuration=(4+Math.random()*4)+'s';
+  leaf.style.fontSize=(15+Math.random()*20)+'px';
+  document.body.appendChild(leaf);
+}
+
+// Dil çevirisi
 const translations = {
-  en: {
-    bannerTitle: "🌟 GrowLeaf Server",
-    bannerDesc: "Fun, trading and special events await in GrowLeaf!",
-    infoTitle: "Server Info",
-    infoDesc: "🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global",
-    menuHome: "Home",
-    menuInfo: "Server Info",
-  },
-  tr: {
-    bannerTitle: "🌟 GrowLeaf Sunucusu",
-    bannerDesc: "GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
-    infoTitle: "Sunucu Bilgileri",
-    infoDesc: "🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global",
-    menuHome: "Ana Sayfa",
-    menuInfo: "Sunucu Bilgileri",
-  },
-  id: {
-    bannerTitle: "🌟 GrowLeaf Server",
-    bannerDesc: "Keseruan, trading dan event khusus menantimu di GrowLeaf!",
-    infoTitle: "Informasi Server",
-    infoDesc: "🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global",
-    menuHome: "Beranda",
-    menuInfo: "Informasi Server",
-  }
+  en: { bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Fun, trading and special events await in GrowLeaf!", infoTitle:"Server Info", infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global", menuHome:"Home", menuInfo:"Server Info" },
+  tr: { bannerTitle:"🌟 GrowLeaf Sunucusu", bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!", infoTitle:"Sunucu Bilgileri", infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global", menuHome:"Ana Sayfa", menuInfo:"Sunucu Bilgileri" },
+  id: { bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!", infoTitle:"Informasi Server", infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global", menuHome:"Beranda", menuInfo:"Informasi Server" }
 };
 
 function changeLang(lang){
-  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
-  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
-  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
-  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
-  document.querySelector('nav ul li a[href="#home"]').innerHTML = translations[lang].menuHome;
-  document.querySelector('nav ul li a[href="#info"]').innerHTML = translations[lang].menuInfo;
+  document.getElementById('banner-title').innerHTML=translations[lang].bannerTitle;
+  document.getElementById('banner-desc').innerHTML=translations[lang].bannerDesc;
+  document.getElementById('info-title').innerHTML=translations[lang].infoTitle;
+  document.getElementById('info-desc').innerHTML=translations[lang].infoDesc;
+  document.querySelector('nav ul li a[href="#home"]').innerHTML=translations[lang].menuHome;
+  document.querySelector('nav ul li a[href="#info"]').innerHTML=translations[lang].menuInfo;
 }
 </script>
 
