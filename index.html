@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GrowLeaf</title>
 <style>
-/* Genel ayarlar */
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
 body { background: #111; color: #fff; overflow-x: hidden; }
 
 /* Animasyonlu yapraklar */
 .leaf {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 30px; height: 30px;
   background: url('https://i.ibb.co/ZHcBv6f/leaf.png') no-repeat center/contain;
   top: -50px;
   animation: fall linear infinite;
@@ -35,10 +33,10 @@ nav {
 }
 nav .logo { font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 5px #000; cursor:pointer; transition:0.3s;}
 nav .logo:hover { transform: scale(1.1); }
-nav ul { list-style: none; display: flex; gap: 30px; }
+nav ul { list-style: none; display: flex; gap: 20px; align-items: center; }
 nav ul li a {
   text-decoration: none; color: #fff; font-weight: 600;
-  padding: 10px 20px; border-radius: 8px; transition: 0.3s;
+  padding: 8px 15px; border-radius: 6px; transition: 0.3s;
   position: relative;
 }
 nav ul li a:hover {
@@ -57,6 +55,16 @@ nav ul li a:hover::after { width: 100%; }
   transition: 0.3s; box-shadow: 0 0 15px #7289da80;
 }
 .discord-btn:hover { background: #5b6eae; box-shadow: 0 0 25px #7289daaa; }
+
+/* Dil Seçimi */
+.language-select {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 /* Banner */
 .banner {
@@ -80,7 +88,7 @@ nav ul li a:hover::after { width: 100%; }
 </head>
 <body>
 
-<!-- Yapraklar -->
+<!-- Animasyonlu yapraklar -->
 <script>
 for(let i=0;i<30;i++){
   let leaf = document.createElement('div');
@@ -95,23 +103,66 @@ for(let i=0;i<30;i++){
 <nav>
   <div class="logo">🌿 GrowLeaf</div>
   <ul>
-    <li><a href="#home">Ana Sayfa</a></li>
+    <li><a href="#home">Home</a></li>
     <li><a href="#info">Server Info</a></li>
     <li><a href="https://discord.gg/ShueAtdt44" target="_blank" class="discord-btn">Discord</a></li>
+    <li>
+      <select class="language-select" onchange="changeLang(this.value)">
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="id">Indonesian</option>
+      </select>
+    </li>
   </ul>
 </nav>
 
 <div class="banner" id="home">
-  <h1>🌟 GrowLeaf Server</h1>
-  <p>Eğlence, ticaret ve özel etkinliklerle dolu bir Growtopia deneyimi!</p>
+  <h1 id="banner-title">🌟 GrowLeaf Server</h1>
+  <p id="banner-desc">Fun, trading and special events await in GrowLeaf!</p>
 </div>
 
 <div class="server-info" id="info">
-  <h2>Server Bilgileri</h2>
-  <p>🟢 Status: Online<br>
-     👥 Players: 120+ Active<br>
-     🌎 Region: EU / Global</p>
+  <h2 id="info-title">Server Info</h2>
+  <p id="info-desc">🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global</p>
 </div>
+
+<script>
+const translations = {
+  en: {
+    bannerTitle: "🌟 GrowLeaf Server",
+    bannerDesc: "Fun, trading and special events await in GrowLeaf!",
+    infoTitle: "Server Info",
+    infoDesc: "🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global",
+    menuHome: "Home",
+    menuInfo: "Server Info",
+  },
+  tr: {
+    bannerTitle: "🌟 GrowLeaf Sunucusu",
+    bannerDesc: "GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
+    infoTitle: "Sunucu Bilgileri",
+    infoDesc: "🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global",
+    menuHome: "Ana Sayfa",
+    menuInfo: "Sunucu Bilgileri",
+  },
+  id: {
+    bannerTitle: "🌟 GrowLeaf Server",
+    bannerDesc: "Keseruan, trading dan event khusus menantimu di GrowLeaf!",
+    infoTitle: "Informasi Server",
+    infoDesc: "🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global",
+    menuHome: "Beranda",
+    menuInfo: "Informasi Server",
+  }
+};
+
+function changeLang(lang){
+  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
+  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
+  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
+  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
+  document.querySelector('nav ul li a[href="#home"]').innerHTML = translations[lang].menuHome;
+  document.querySelector('nav ul li a[href="#info"]').innerHTML = translations[lang].menuInfo;
+}
+</script>
 
 </body>
 </html>
