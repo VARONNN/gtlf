@@ -82,7 +82,6 @@ nav ul li a:hover::after { width:100%; }
     <li><a href="#home" id="menu-home">Home</a></li>
     <li><a href="#info" id="menu-info">Server Info</a></li>
     <li><a href="https://discord.gg/ShueAtdt44" target="_blank" class="discord-btn">Discord</a></li>
-    <!-- Extra sağ üst mağaza butonu -->
     <li><a href="#shop" id="menu-shop-extra" class="discord-btn">Shop</a></li>
     <li>
       <select class="language-select" onchange="changeLang(this.value)">
@@ -102,10 +101,9 @@ nav ul li a:hover::after { width:100%; }
 
 <div class="server-info" id="info">
   <h2 id="info-title">Server Info</h2>
-  <p id="info-desc">🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global</p>
+  <p id="info-desc">🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues.</p>
 </div>
 
-<!-- Mağaza bölümü -->
 <div class="server-info" id="shop">
   <h2 id="shop-title">In-Game Shop</h2>
   <p id="shop-desc">💰 Buy items, upgrades and special boosts directly from the shop!</p>
@@ -134,7 +132,9 @@ const translations = {
     menuShop:"Shop",
     shopTitle:"In-Game Shop",
     shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!",
-    startBtn:"Start"
+    startBtn:"Start",
+    infoTitle:"Server Info",
+    infoDesc:"🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues."
   },
   tr:{
     bannerTitle:"🌟 GrowLeaf Sunucusu",
@@ -144,7 +144,9 @@ const translations = {
     menuShop:"Mağaza",
     shopTitle:"Oyun İçi Mağaza",
     shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!",
-    startBtn:"Başla"
+    startBtn:"Başla",
+    infoTitle:"Sunucu Bilgileri",
+    infoDesc:"🟢 Sunucumuz şu anda aktif ve birçok kişi bulunmakta.<br>🌟 Sunucumuz hiçbir zaman kapanmayacaktır.<br>⚡ Lag sorunumuz yoktur."
   },
   id:{
     bannerTitle:"🌟 GrowLeaf Server",
@@ -154,21 +156,23 @@ const translations = {
     menuShop:"Toko",
     shopTitle:"Toko In-Game",
     shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!",
-    startBtn:"Mulai"
+    startBtn:"Mulai",
+    infoTitle:"Informasi Server",
+    infoDesc:"🟢 Server kami saat ini aktif dan banyak orang online.<br>🌟 Server kami tidak akan pernah tutup.<br>⚡ Tidak ada masalah lag."
   }
 };
 
 function changeLang(lang){
   document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
   document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
-  document.getElementById('info-title').innerHTML = translations[lang].menuInfo;
-  document.getElementById('info-desc').innerHTML = translations[lang].shopDesc;
   document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
   document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
   document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
   document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
   document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
   document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
+  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
+  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
 }
 </script>
 
