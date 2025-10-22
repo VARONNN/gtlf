@@ -1,32 +1,79 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrowLeaf</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #f57c00;
-    }
-    a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowLeaf</title>
+<style>
+/* Genel ayarlar */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Poppins', sans-serif; }
+body { background: #111; color: #fff; }
+
+/* Menü */
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(90deg, #ff6600, #ff8800);
+  padding: 15px 50px;
+  box-shadow: 0 4px 10px #000;
+}
+nav .logo { font-size: 1.8rem; font-weight: bold; text-shadow: 0 0 5px #000; }
+nav ul { list-style: none; display: flex; gap: 30px; }
+nav ul li a {
+  text-decoration: none; color: #fff; font-weight: 600;
+  padding: 8px 15px; border-radius: 6px; transition: 0.3s;
+}
+nav ul li a:hover { background: rgba(0,0,0,0.2); }
+
+/* Discord butonu */
+.discord-btn {
+  padding: 10px 20px; background: #7289da; color: #fff;
+  text-decoration: none; border-radius: 8px; font-weight: bold;
+  transition: 0.3s;
+}
+.discord-btn:hover { background: #5b6eae; }
+
+/* Banner */
+.banner {
+  text-align: center; padding: 100px 20px;
+  background: linear-gradient(180deg, #ff6600, #ff8800);
+  color: #fff; text-shadow: 0 0 10px #000;
+}
+.banner h1 { font-size: 3rem; margin-bottom: 15px; }
+.banner p { font-size: 1.3rem; }
+
+/* Server Info */
+.server-info {
+  max-width: 800px; margin: 50px auto; background: #222;
+  padding: 30px; border-radius: 15px; box-shadow: 0 0 15px #ff6600aa;
+  text-align: center;
+}
+.server-info h2 { color: #ff8800; margin-bottom: 15px; }
+.server-info p { font-size: 1.1rem; line-height: 1.5; }
+</style>
 </head>
 <body>
-  <h1>🌿 GrowLeaf</h1>
-  <p>Discord sunucumuza katılmak için <a href="https://discord.gg/ShueAtdt44" target="_blank">buraya tıklayın</a>.</p>
+
+<nav>
+  <div class="logo">🌿 GrowLeaf</div>
+  <ul>
+    <li><a href="#home">Ana Sayfa</a></li>
+    <li><a href="#info">Server Info</a></li>
+    <li><a href="https://discord.gg/ShueAtdt44" target="_blank" class="discord-btn">Discord</a></li>
+  </ul>
+</nav>
+
+<div class="banner" id="home">
+  <h1>🌟 GrowLeaf Server</h1>
+  <p>Eğlence, ticaret ve özel etkinliklerle dolu bir Growtopia deneyimi!</p>
+</div>
+
+<div class="server-info" id="info">
+  <h2>Server Bilgileri</h2>
+  <p>🟢 Status: Online<br>
+     👥 Players: 120+ Active<br>
+     🌎 Region: EU / Global</p>
+</div>
+
 </body>
 </html>
+
