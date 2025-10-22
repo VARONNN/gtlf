@@ -88,10 +88,12 @@ nav ul li a:hover::after { width:100%; }
   background:#222;
   padding:40px;
   border-radius:20px;
-  text-align:center;
+  text-align:left;
   box-shadow:0 0 30px #ff8800aa;
+  max-width:600px;
+  position:relative;
 }
-.modal-content h2 { color:#ff8800; margin-bottom:30px; font-size:2rem; }
+.modal-content h2 { color:#ff8800; margin-bottom:20px; font-size:2rem; text-align:center; }
 .modal-content button {
   margin:10px;
   padding:15px 40px;
@@ -109,6 +111,24 @@ nav ul li a:hover::after { width:100%; }
   transform:scale(1.1);
   box-shadow:0 0 30px #ff8800aa;
 }
+/* Çarpı butonu */
+.close-modal {
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:1.5rem;
+  font-weight:bold;
+  background:#ff3300;
+  border:none;
+  color:#fff;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.close-modal:hover { transform:scale(1.2); box-shadow:0 0 15px #ff3300aa; }
+.modal-text { margin-top:20px; font-size:1rem; line-height:1.5; }
 </style>
 </head>
 <body>
@@ -148,11 +168,23 @@ nav ul li a:hover::after { width:100%; }
 
 <!-- Modal -->
 <div id="start-modal">
-  <div class="modal-content">
+  <div class="modal-content" id="platform-modal">
+    <button class="close-modal" id="close-modal">&times;</button>
     <h2 id="modal-title">Choose Your Platform</h2>
     <button id="android-btn">Android</button>
     <button id="pc-btn">PC</button>
     <button id="ios-btn">iOS</button>
+    <div class="modal-text" id="android-text" style="display:none;">
+      <p>1 - Önce Güç Tüneli'ni indir</p>
+      <p>2 - Güç Tüneli'ne gir</p>
+      <p>3 - Sağ üst köşedeki 3 çizgi simgesine tıkla</p>
+      <p>4 - Sunucular metnini göreceksiniz. Sunucular metninin yanındaki Ayarlar simgesine tıklayın.</p>
+      <p>5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı alana yapıştırın:</p>
+      <p><a href="https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow" target="_blank" style="color:#ff8800;">Link</a></p>
+      <p>6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.</p>
+      <p>7 - Sunucu adı için <b>growleaf</b> yaz. Büyük harf kullanma. İsim ve şifre boş bırakılabilir.</p>
+      <p>8 - Hazırsın.</p>
+    </div>
   </div>
 </div>
 
@@ -170,78 +202,27 @@ for(let i=0;i<30;i++){
 }
 
 // Modal açma
-document.getElementById('start-btn').addEventListener('click',()=>{
-  document.getElementById('start-modal').style.display='flex';
+const startBtn = document.getElementById('start-btn');
+const startModal = document.getElementById('start-modal');
+const closeModal = document.getElementById('close-modal');
+const androidBtn = document.getElementById('android-btn');
+const androidText = document.getElementById('android-text');
+
+startBtn.addEventListener('click', () => {
+  startModal.style.display = 'flex';
+  androidText.style.display='none';
 });
 
-// Dil çevirisi
-const translations = {
-  en:{
-    bannerTitle:"🌟 GrowLeaf Server",
-    bannerDesc:"Fun, trading and special events await in GrowLeaf!",
-    menuHome:"Home",
-    menuInfo:"Server Info",
-    menuShop:"Shop",
-    shopTitle:"In-Game Shop",
-    shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!",
-    startBtn:"Start",
-    infoTitle:"Server Info",
-    infoDesc:"🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues.",
-    modalTitle:"Choose Your Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  },
-  tr:{
-    bannerTitle:"🌟 GrowLeaf Sunucusu",
-    bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
-    menuHome:"Ana Sayfa",
-    menuInfo:"Sunucu Bilgileri",
-    menuShop:"Mağaza",
-    shopTitle:"Oyun İçi Mağaza",
-    shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!",
-    startBtn:"Başla",
-    infoTitle:"Sunucu Bilgileri",
-    infoDesc:"🟢 Sunucumuz şu anda aktif ve birçok kişi bulunmakta.<br>🌟 Sunucumuz hiçbir zaman kapanmayacaktır.<br>⚡ Lag sorunumuz yoktur.",
-    modalTitle:"Platformunu Seç",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  },
-  id:{
-    bannerTitle:"🌟 GrowLeaf Server",
-    bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!",
-    menuHome:"Beranda",
-    menuInfo:"Informasi Server",
-    menuShop:"Toko",
-    shopTitle:"Toko In-Game",
-    shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!",
-    startBtn:"Mulai",
-    infoTitle:"Informasi Server",
-    infoDesc:"🟢 Server kami saat ini aktif dan banyak orang online.<br>🌟 Server kami tidak akan pernah tutup.<br>⚡ Tidak ada masalah lag.",
-    modalTitle:"Pilih Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  }
-};
+// Çarpı butonu ile kapatma
+closeModal.addEventListener('click', () => {
+  startModal.style.display = 'none';
+  androidText.style.display='none';
+});
 
-function changeLang(lang){
-  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
-  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
-  document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
-  document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
-  document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
-  document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
-  document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
-  document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
-  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
-  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
-  document.getElementById('modal-title').innerHTML = translations[lang].modalTitle;
-  document.getElementById('android-btn').innerHTML = translations[lang].androidBtn;
-  document.getElementById('pc-btn').innerHTML = translations[lang].pcBtn;
-  document.getElementById('ios-btn').innerHTML = translations[lang].iosBtn;
-}
+// Android butonuna tıklandığında bilgi göster
+androidBtn.addEventListener('click', () => {
+  androidText.style.display='block';
+});
 </script>
 
 </body>
