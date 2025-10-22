@@ -8,7 +8,7 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
 body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-height:100vh; }
 
-/* Leaf emojis */
+/* Emoji yapraklar */
 .leaf {
   position: absolute;
   top: -50px;
@@ -18,7 +18,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  color: orange; /* 🍃 orange color */
+  color: orange; /* 🍃 renk turuncu */
 }
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg); opacity:0; }
@@ -26,7 +26,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
 }
 
-/* Navigation menu */
+/* Menü */
 nav {
   display:flex; justify-content:space-between; align-items:center;
   background: linear-gradient(90deg,#ff6600,#ff8800);
@@ -44,12 +44,12 @@ nav ul li a:hover::after { width:100%; }
 .discord-btn:hover { background:#5b6eae; box-shadow:0 0 25px #7289daaa; }
 .language-select { background:rgba(255,255,255,0.2); color:#fff; border-radius:6px; padding:5px 10px; font-weight:bold; cursor:pointer; }
 
-/* Banner section */
+/* Banner */
 .banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden; height:50vh;}
 .banner h1 { font-size:3rem; margin-bottom:20px;}
 .banner p { font-size:1.3rem; }
 
-/* Start Button */
+/* Başla Butonu */
 .start-btn {
   margin-top:30px;
   padding:20px 60px;
@@ -68,12 +68,12 @@ nav ul li a:hover::after { width:100%; }
   box-shadow:0 0 50px #ff8800aa;
 }
 
-/* Server Information */
+/* Server Info */
 .server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
 .server-info p { font-size:1.1rem; line-height:1.5; }
 
-/* Modal window */
+/* Modal */
 #start-modal {
   display:none;
   position:fixed;
@@ -111,7 +111,7 @@ nav ul li a:hover::after { width:100%; }
   transform:scale(1.1);
   box-shadow:0 0 30px #ff8800aa;
 }
-/* Close button */
+/* Çarpı butonu */
 .close-modal {
   position:absolute;
   top:15px;
@@ -175,21 +175,21 @@ nav ul li a:hover::after { width:100%; }
     <button id="pc-btn">PC</button>
     <button id="ios-btn">iOS</button>
     <div class="modal-text" id="android-text" style="display:none;">
-      <p>1 - First, download the Power Tunnel</p>
-      <p>2 - Enter the Power Tunnel</p>
-      <p>3 - Click on the three lines icon in the top right corner</p>
-      <p>4 - You will see the text for servers. Click the Settings icon next to the servers text.</p>
-      <p>5 - Click on the Main File URL section and paste the link below:</p>
+      <p>1 - Önce Güç Tüneli'ni indir</p>
+      <p>2 - Güç Tüneli'ne gir</p>
+      <p>3 - Sağ üst köşedeki 3 çizgi simgesine tıkla</p>
+      <p>4 - Sunucular metnini göreceksiniz. Sunucular metninin yanındaki Ayarlar simgesine tıklayın.</p>
+      <p>5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı alana yapıştırın:</p>
       <p><a href="https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow" target="_blank" style="color:#ff8800;">Link</a></p>
-      <p>6 - Open the Power Tunnel and log into Growtopia.</p>
-      <p>7 - Enter <b>growleaf</b> for the server name. Do not use capital letters. You may leave the name and password fields blank.</p>
-      <p>8 - You are ready.</p>
+      <p>6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.</p>
+      <p>7 - Sunucu adı için <b>growleaf</b> yaz. Büyük harf kullanma. İsim ve şifre boş bırakılabilir.</p>
+      <p>8 - Hazırsın.</p>
     </div>
   </div>
 </div>
 
 <script>
-// Falling leaf emojis
+// Düşen yaprak emojileri
 for(let i=0;i<30;i++){
   const leaf = document.createElement('div');
   leaf.className='leaf';
@@ -201,7 +201,7 @@ for(let i=0;i<30;i++){
   document.body.appendChild(leaf);
 }
 
-// Opening modal
+// Modal açma
 const startBtn = document.getElementById('start-btn');
 const startModal = document.getElementById('start-modal');
 const closeModal = document.getElementById('close-modal');
@@ -213,19 +213,19 @@ startBtn.addEventListener('click', () => {
   androidText.style.display='none';
 });
 
-// Close with the close button
+// Çarpı butonu ile kapatma
 closeModal.addEventListener('click', () => {
   startModal.style.display = 'none';
   androidText.style.display='none';
 });
 
-// Show information and redirect link when Android button is clicked
+// Android butonuna tıklandığında bilgi göster ve linke yönlendir
 androidBtn.addEventListener('click', () => {
   androidText.style.display='block';
   window.open("https://www.mediafire.com/file/w6hwsjljnbh2t2p/powertunel.apk/file", "_blank");
 });
 
-// Language translation
+// Dil çevirisi
 const translations = {
   en:{
     bannerTitle:"🌟 GrowLeaf Server",
@@ -297,49 +297,4 @@ function changeLang(lang){
 
 </body>
 </html>
-<!-- Additional Information for PC and iOS -->
-<div class="modal-text" id="pc-text" style="display:none;">
-  <p>1 - Open the GrowLeaf PC version</p>
-  <p>2 - Use the following address as the server IP:</p>
-  <p><b id="server-ip">123.45.67.89</b></p>
-  <button id="copy-ip-btn">Copy IP</button>
-  <p>3 - You can log into the server.</p>
-</div>
 
-<div class="modal-text" id="ios-text" style="display:none;">
-  <p>1 - Open the GrowLeaf iOS application</p>
-  <p>2 - Follow the instructions for server IP or connection.</p>
-</div>
-
-<script>
-// PC and iOS buttons
-const pcBtn = document.getElementById('pc-btn');
-const iosBtn = document.getElementById('ios-btn');
-const pcText = document.getElementById('pc-text');
-const iosText = document.getElementById('ios-text');
-
-// When the PC button is clicked
-pcBtn.addEventListener('click', () => {
-  androidText.style.display = 'none';
-  iosText.style.display = 'none';
-  pcText.style.display = 'block';
-});
-
-// When the iOS button is clicked
-iosBtn.addEventListener('click', () => {
-  androidText.style.display = 'none';
-  pcText.style.display = 'none';
-  iosText.style.display = 'block';
-});
-
-// IP copy button
-const copyIpBtn = document.getElementById('copy-ip-btn');
-copyIpBtn.addEventListener('click', () => {
-  const ip = document.getElementById('server-ip').innerText;
-  navigator.clipboard.writeText(ip).then(() => {
-    alert('IP copied: ' + ip);
-  }).catch(() => {
-    alert('Failed to copy IP.');
-  });
-});
-</script>
