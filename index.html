@@ -400,3 +400,73 @@ document.getElementById('register-submit').addEventListener('click', () => {
 });
 </script>
 
+<!-- === ÖZEL MENÜ VE GİRİŞ/KAYIT === -->
+<div id="authSection" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:200;justify-content:center;align-items:center;">
+  <div style="background:#222;padding:40px;border-radius:20px;text-align:center;max-width:400px;position:relative;">
+    <h2 id="authTitle" style="color:#ff8800;margin-bottom:20px;font-size:2rem;">Giriş Yap / Kayıt Ol</h2>
+    <input id="username" type="text" placeholder="Kullanıcı Adı" style="width:90%;padding:10px;margin:5px 0;border-radius:10px;border:none;text-align:center;">
+    <input id="password" type="password" placeholder="Şifre" style="width:90%;padding:10px;margin:5px 0;border-radius:10px;border:none;text-align:center;">
+    <button onclick="authAction()" style="margin-top:15px;padding:10px 30px;font-weight:bold;background:#ff8800;color:#fff;border:none;border-radius:10px;cursor:pointer;">Devam Et</button>
+    <p style="margin-top:10px;color:#fff;cursor:pointer;" onclick="toggleAuthMode()">Kayıt / Giriş Değiştir</p>
+    <button onclick="closeAuth()" style="position:absolute;top:15px;right:20px;font-size:1.2rem;background:#ff3300;color:#fff;border:none;border-radius:50%;width:35px;height:35px;cursor:pointer;">&times;</button>
+  </div>
+</div>
+
+<div id="profileMenu" style="display:none;position:absolute;top:10px;right:10px;z-index:150;text-align:right;">
+  <img id="profilePic" src="https://i.imgur.com/4M34hi2.png" style="width:45px;height:45px;border-radius:50%;cursor:pointer;border:2px solid #ff8800;" onclick="toggleProfileDropdown()">
+  <div id="dropdownMenu" style="display:none;background:#222;color:#fff;border-radius:15px;padding:15px;margin-top:10px;min-width:200px;box-shadow:0 0 25px #ff8800aa;">
+    <p id="profileName" style="font-weight:bold;margin-bottom:10px;">Kullanıcı</p>
+    <label style="cursor:pointer;">📸 Profil Fotoğrafı
+      <input type="file" id="uploadPic" accept="image/*" style="display:none;" onchange="updateProfilePic(event)">
+    </label>
+    <hr style="margin:10px 0;border-color:#ff8800;">
+    <button onclick="showCategory('profile')" style="width:100%;text-align:left;background:none;border:none;color:#ff8800;cursor:pointer;margin-bottom:5px;">Profilim</button>
+    <button onclick="showCategory('settings')" style="width:100%;text-align:left;background:none;border:none;color:#ff8800;cursor:pointer;margin-bottom:5px;">Ayarlar</button>
+    <button onclick="logout()" style="width:100%;text-align:left;background:none;border:none;color:#ff3300;cursor:pointer;">Çıkış Yap</button>
+  </div>
+</div>
+
+<div id="categoryContent" style="display:none;position:fixed;top:70px;right:10px;background:#222;color:#fff;padding:20px;border-radius:15px;min-width:250px;box-shadow:0 0 25px #ff8800aa;z-index:140;">
+  <p id="categoryTitle" style="font-weight:bold;margin-bottom:10px;"></p>
+  <p id="categoryDesc"></p>
+</div>
+
+<script>
+  let currentUser = null;
+  let authMode = "login";
+  let currentLang = "tr";
+
+  const langTexts = {
+    tr: { login:"Giriş Yap", signup:"Kayıt Ol", fillFields:"Lütfen tüm alanları doldur.", signedUp:"Başarıyla kayıt oldun!", wrongInfo:"Kullanıcı adı veya şifre hatalı!", profile:"Profilim", settings:"Ayarlar", logout:"Çıkış Yap" },
+    en: { login:"Login", signup:"Sign Up", fillFields:"Please fill all fields.", signedUp:"Successfully signed up!", wrongInfo:"Wrong username or password!", profile:"Profile", settings:"Settings", logout:"Logout" },
+    id: { login:"Masuk", signup:"Daftar", fillFields:"Harap isi semua kolom.", signedUp:"Berhasil mendaftar!", wrongInfo:"Username atau password salah!", profile:"Profil", settings:"Pengaturan", logout:"Keluar" }
+  };
+
+  function openAuth(){ document.getElementById('authSection').style.display='flex'; }
+  function closeAuth(){ document.getElementById('authSection').style.display='none'; }
+  function toggleAuthMode(){
+    authMode = authMode==="login"?"signup":"login";
+    document.getElementById('authTitle').innerText = authMode==="login"?langTexts[currentLang].login:langTexts[currentLang].signup;
+  }
+
+  function authAction(){
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    if(!user||!pass){ alert(langTexts[currentLang].fillFields); return; }
+    if(authMode==="signup"){ localStorage.setItem("user_"+user,pass); alert(langTexts[currentLang].signedUp); toggleAuthMode(); }
+    else{ const saved = localStorage.getItem("user_"+user); if(saved && saved===pass){ currentUser=user; localStorage.setItem("loggedInUser",user); showProfile(); closeAuth(); }else{ alert(langTexts[currentLang].wrongInfo); } }
+  }
+
+  function showProfile(){ document.getElementById('profileMenu').style.display='block'; document.getElementById('profileName').innerText=currentUser; const pic=localStorage.getItem("profilePic_"+currentUser); if(pic) document.getElementById('profilePic').src=pic; }
+  function toggleProfileDropdown(){ const d=document.getElementById('dropdownMenu'); d.style.display=d.style.display==='block'?'none':'block'; }
+
+  function updateProfilePic(e){ const file=e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload=function(ev){ document.getElementById('profilePic').src=ev.target.result; localStorage.setItem("profilePic_"+currentUser,ev.target.result); }; reader.readAsDataURL(file); }
+
+  function logout(){ localStorage.removeItem("loggedInUser"); currentUser=null; document.getElementById('profileMenu').style.display='none'; document.getElementById('dropdownMenu').style.display='none'; }
+
+  function showCategory(cat){ const title=document.getElementById('categoryTitle'); const desc=document.getElementById('categoryDesc'); document.getElementById('categoryContent').style.display='block'; if(cat==='profile'){ title.innerText=langTexts[currentLang].profile; desc.innerText=currentLang==='tr'?"Burada kullanıcı bilgilerini görebilirsin.":"en" } else if(cat==='settings'){ title.innerText=langTexts[currentLang].settings; desc.innerText=currentLang==='tr'?"Site ayarlarını buradan değiştirebilirsin.":"en" } }
+
+  window.onload = () => { const savedUser=localStorage.getItem("loggedInUser"); if(savedUser){ currentUser=savedUser; showProfile(); } };
+</script>
+
+
