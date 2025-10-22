@@ -6,7 +6,25 @@
 <title>GrowLeaf</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-body { background:#111; color:#fff; overflow-x:hidden; }
+body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-height:100vh; }
+
+/* Emoji yapraklar */
+.leaf {
+  position: absolute;
+  top: -50px;
+  font-size: 25px;
+  user-select: none;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  color: orange; /* 🍃 renk turuncu */
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity:0; }
+  10% { opacity:1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}
 
 /* Menü */
 nav {
@@ -27,7 +45,7 @@ nav ul li a:hover::after { width:100%; }
 .language-select { background:rgba(255,255,255,0.2); color:#fff; border-radius:6px; padding:5px 10px; font-weight:bold; cursor:pointer; }
 
 /* Banner */
-.banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden;}
+.banner { text-align:center; padding:120px 20px; background: linear-gradient(180deg,#ff6600,#ff8800); color:#fff; text-shadow:0 0 15px #000; position:relative; overflow:hidden; height:50vh;}
 .banner h1 { font-size:3rem; margin-bottom:20px;}
 .banner p { font-size:1.3rem; }
 
@@ -36,9 +54,6 @@ nav ul li a:hover::after { width:100%; }
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
 .server-info p { font-size:1.1rem; line-height:1.5; }
 
-/* Yaprak emojileri */
-.leaf { position:absolute; font-size:25px; user-select:none; pointer-events:none; animation-name:fall; animation-timing-function: linear; }
-@keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity:0; } 50% { opacity:0.8; } 100% { transform: translateY(110vh) rotate(360deg); opacity:0; } }
 </style>
 </head>
 <body>
@@ -77,15 +92,16 @@ for(let i=0;i<30;i++){
   leaf.innerText='🍃';
   leaf.style.left=Math.random()*100+'vw';
   leaf.style.animationDuration=(4+Math.random()*4)+'s';
-  leaf.style.fontSize=(15+Math.random()*20)+'px';
+  leaf.style.fontSize=(15+Math.random()*25)+'px';
+  leaf.style.opacity=Math.random()*0.8+0.2;
   document.body.appendChild(leaf);
 }
 
 // Dil çevirisi
 const translations = {
-  en: { bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Fun, trading and special events await in GrowLeaf!", infoTitle:"Server Info", infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global", menuHome:"Home", menuInfo:"Server Info" },
-  tr: { bannerTitle:"🌟 GrowLeaf Sunucusu", bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!", infoTitle:"Sunucu Bilgileri", infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global", menuHome:"Ana Sayfa", menuInfo:"Sunucu Bilgileri" },
-  id: { bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!", infoTitle:"Informasi Server", infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global", menuHome:"Beranda", menuInfo:"Informasi Server" }
+  en:{bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Fun, trading and special events await in GrowLeaf!", infoTitle:"Server Info", infoDesc:"🟢 Status: Online<br>👥 Players: 120+ Active<br>🌎 Region: EU / Global", menuHome:"Home", menuInfo:"Server Info"},
+  tr:{bannerTitle:"🌟 GrowLeaf Sunucusu", bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!", infoTitle:"Sunucu Bilgileri", infoDesc:"🟢 Durum: Online<br>👥 Oyuncular: 120+ Aktif<br>🌎 Bölge: EU / Global", menuHome:"Ana Sayfa", menuInfo:"Sunucu Bilgileri"},
+  id:{bannerTitle:"🌟 GrowLeaf Server", bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!", infoTitle:"Informasi Server", infoDesc:"🟢 Status: Online<br>👥 Pemain: 120+ Aktif<br>🌎 Wilayah: EU / Global", menuHome:"Beranda", menuInfo:"Informasi Server"}
 };
 
 function changeLang(lang){
