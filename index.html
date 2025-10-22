@@ -18,7 +18,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  color: orange; /* 🍃 renk turuncu */
+  color: orange;
 }
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg); opacity:0; }
@@ -129,12 +129,27 @@ nav ul li a:hover::after { width:100%; }
 }
 .close-modal:hover { transform:scale(1.2); box-shadow:0 0 15px #ff3300aa; }
 .modal-text { margin-top:20px; font-size:1rem; line-height:1.5; }
+
+/* IP Kopyala Butonu */
+#copy-ip-btn {
+  margin-top:15px;
+  padding:10px 20px;
+  font-size:1rem;
+  font-weight:bold;
+  background:#ff8800;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#copy-ip-btn:hover { transform:scale(1.05); box-shadow:0 0 15px #ff8800aa; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">🌿 GrowLeaf</div>
+  <div class="logo">🌿</div>
   <ul>
     <li><a href="#home" id="menu-home">Home</a></li>
     <li><a href="#info" id="menu-info">Server Info</a></li>
@@ -184,117 +199,4 @@ nav ul li a:hover::after { width:100%; }
       <p>6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.</p>
       <p>7 - Sunucu adı için <b>growleaf</b> yaz. Büyük harf kullanma. İsim ve şifre boş bırakılabilir.</p>
       <p>8 - Hazırsın.</p>
-    </div>
-  </div>
-</div>
-
-<script>
-// Düşen yaprak emojileri
-for(let i=0;i<30;i++){
-  const leaf = document.createElement('div');
-  leaf.className='leaf';
-  leaf.innerText='🍃';
-  leaf.style.left=Math.random()*100+'vw';
-  leaf.style.animationDuration=(4+Math.random()*4)+'s';
-  leaf.style.fontSize=(15+Math.random()*25)+'px';
-  leaf.style.opacity=Math.random()*0.8+0.2;
-  document.body.appendChild(leaf);
-}
-
-// Modal açma
-const startBtn = document.getElementById('start-btn');
-const startModal = document.getElementById('start-modal');
-const closeModal = document.getElementById('close-modal');
-const androidBtn = document.getElementById('android-btn');
-const androidText = document.getElementById('android-text');
-
-startBtn.addEventListener('click', () => {
-  startModal.style.display = 'flex';
-  androidText.style.display='none';
-});
-
-// Çarpı butonu ile kapatma
-closeModal.addEventListener('click', () => {
-  startModal.style.display = 'none';
-  androidText.style.display='none';
-});
-
-// Android butonuna tıklandığında bilgi göster ve linke yönlendir
-androidBtn.addEventListener('click', () => {
-  androidText.style.display='block';
-  window.open("https://www.mediafire.com/file/w6hwsjljnbh2t2p/powertunel.apk/file", "_blank");
-});
-
-// Dil çevirisi
-const translations = {
-  en:{
-    bannerTitle:"🌟 GrowLeaf Server",
-    bannerDesc:"Fun, trading and special events await in GrowLeaf!",
-    menuHome:"Home",
-    menuInfo:"Server Info",
-    menuShop:"Shop",
-    shopTitle:"In-Game Shop",
-    shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!",
-    startBtn:"Start",
-    infoTitle:"Server Info",
-    infoDesc:"🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues.",
-    modalTitle:"Choose Your Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  },
-  tr:{
-    bannerTitle:"🌟 GrowLeaf Sunucusu",
-    bannerDesc:"GrowLeaf'te eğlence, ticaret ve özel etkinlikler seni bekliyor!",
-    menuHome:"Ana Sayfa",
-    menuInfo:"Sunucu Bilgileri",
-    menuShop:"Mağaza",
-    shopTitle:"Oyun İçi Mağaza",
-    shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!",
-    startBtn:"Başla",
-    infoTitle:"Sunucu Bilgileri",
-    infoDesc:"🟢 Sunucumuz şu anda aktif ve birçok kişi bulunmakta.<br>🌟 Sunucumuz hiçbir zaman kapanmayacaktır.<br>⚡ Lag sorunumuz yoktur.",
-    modalTitle:"Platformunu Seç",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  },
-  id:{
-    bannerTitle:"🌟 GrowLeaf Server",
-    bannerDesc:"Keseruan, trading dan event khusus menantimu di GrowLeaf!",
-    menuHome:"Beranda",
-    menuInfo:"Informasi Server",
-    menuShop:"Toko",
-    shopTitle:"Toko In-Game",
-    shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!",
-    startBtn:"Mulai",
-    infoTitle:"Informasi Server",
-    infoDesc:"🟢 Server kami saat ini aktif dan banyak orang online.<br>🌟 Server kami tidak akan pernah tutup.<br>⚡ Tidak ada masalah lag.",
-    modalTitle:"Pilih Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
-  }
-};
-
-function changeLang(lang){
-  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
-  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
-  document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
-  document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
-  document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
-  document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
-  document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
-  document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
-  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
-  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
-  document.getElementById('modal-title').innerHTML = translations[lang].modalTitle;
-  document.getElementById('android-btn').innerHTML = translations[lang].androidBtn;
-  document.getElementById('pc-btn').innerHTML = translations[lang].pcBtn;
-  document.getElementById('ios-btn').innerHTML = translations[lang].iosBtn;
-}
-</script>
-
-</body>
-</html>
 
