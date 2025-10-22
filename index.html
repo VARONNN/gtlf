@@ -151,7 +151,7 @@ nav ul li a:hover::after { width:100%; }
 </nav>
 
 <div class="banner" id="home">
-  <h1 id="banner-title">🌟 GrowLeaf Server</h1>
+  <h1 id="banner-title">🍁 GrowLeaf Server</h1>
   <p id="banner-desc">Fun, trading and special events await in GrowLeaf!</p>
   <button class="start-btn" id="start-btn">Start</button>
 </div>
@@ -399,3 +399,101 @@ document.getElementById('register-submit').addEventListener('click', () => {
   } else alert('Lütfen kullanıcı adı ve şifre girin.');
 });
 </script>
+
+<script>
+// Tüm metinleri çevirmek için fonksiyon
+function translateSite(lang){
+  // Banner
+  document.getElementById('banner-title').innerHTML = translations[lang].bannerTitle;
+  document.getElementById('banner-desc').innerHTML = translations[lang].bannerDesc;
+
+  // Menü
+  document.getElementById('menu-home').innerHTML = translations[lang].menuHome;
+  document.getElementById('menu-info').innerHTML = translations[lang].menuInfo;
+  document.getElementById('menu-shop-extra').innerHTML = translations[lang].menuShop;
+
+  // Server Info
+  document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
+  document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
+
+  // Shop
+  document.getElementById('shop-title').innerHTML = translations[lang].shopTitle;
+  document.getElementById('shop-desc').innerHTML = translations[lang].shopDesc;
+
+  // Start Button
+  document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
+
+  // Platform Modal
+  document.getElementById('modal-title').innerHTML = translations[lang].modalTitle;
+  document.getElementById('android-btn').innerHTML = translations[lang].androidBtn;
+  document.getElementById('pc-btn').innerHTML = translations[lang].pcBtn;
+  document.getElementById('ios-btn').innerHTML = translations[lang].iosBtn;
+
+  // Android, PC, iOS metinleri
+  document.getElementById('android-text').querySelectorAll('p')[0].innerText = translations[lang].androidStep1;
+  document.getElementById('android-text').querySelectorAll('p')[1].innerText = translations[lang].androidStep2;
+  document.getElementById('android-text').querySelectorAll('p')[2].innerText = translations[lang].androidStep3;
+  document.getElementById('android-text').querySelectorAll('p')[3].innerText = translations[lang].androidStep4;
+  document.getElementById('android-text').querySelectorAll('p')[4].innerText = translations[lang].androidStep5;
+  document.getElementById('android-text').querySelectorAll('p')[5].innerText = translations[lang].androidStep6;
+  document.getElementById('android-text').querySelectorAll('p')[6].innerHTML = translations[lang].androidStep7;
+  document.getElementById('android-text').querySelectorAll('p')[7].innerText = translations[lang].androidStep8;
+
+  document.getElementById('pc-text').querySelectorAll('p')[0].innerText = translations[lang].pcStep1;
+  document.getElementById('pc-text').querySelectorAll('p')[1].innerText = translations[lang].pcStep2;
+  document.getElementById('pc-text').querySelectorAll('p')[2].innerText = translations[lang].pcStep3;
+
+  document.getElementById('ios-text').querySelectorAll('p')[0].innerText = translations[lang].iosStep1;
+  document.getElementById('ios-text').querySelectorAll('p')[1].innerText = translations[lang].iosStep2;
+
+  // Login/Register
+  document.querySelector('#login-form h2').innerText = translations[lang].loginTitle;
+  document.getElementById('login-user').placeholder = translations[lang].loginUser;
+  document.getElementById('login-pass').placeholder = translations[lang].loginPass;
+  document.getElementById('login-submit').innerText = translations[lang].loginBtn;
+
+  document.querySelector('#register-form h2').innerText = translations[lang].registerTitle;
+  document.getElementById('register-user').placeholder = translations[lang].registerUser;
+  document.getElementById('register-pass').placeholder = translations[lang].registerPass;
+  document.getElementById('register-submit').innerText = translations[lang].registerBtn;
+}
+
+// Dil seçimi değiştiğinde veya start basıldığında çağır
+document.querySelector('.language-select').addEventListener('change', (e)=>{
+  translateSite(e.target.value);
+});
+startBtn.addEventListener('click', () => {
+  translateSite(document.querySelector('.language-select').value);
+});
+
+// Tüm çeviriler
+translations.en.androidStep1 = "1 - Download Power Tunnel first";
+translations.en.androidStep2 = "2 - Open Power Tunnel";
+translations.en.androidStep3 = "3 - Tap the 3-line icon at top-right";
+translations.en.androidStep4 = "4 - You will see Servers text, click settings icon next to it";
+translations.en.androidStep5 = "5 - Tap Main File URL and paste the link below";
+translations.en.androidStep6 = "6 - Open Power Tunnel and login to Growtopia";
+translations.en.androidStep7 = '7 - Enter server name <b>growleaf</b>. Leave name & password empty.';
+translations.en.androidStep8 = "8 - You are ready";
+
+translations.tr.androidStep1 = "1 - Önce Güç Tüneli'ni indir";
+translations.tr.androidStep2 = "2 - Güç Tüneli'ne gir";
+translations.tr.androidStep3 = "3 - Sağ üst köşedeki 3 çizgi simgesine tıkla";
+translations.tr.androidStep4 = "4 - Sunucular metnini göreceksiniz. Ayarlar simgesine tıkla";
+translations.tr.androidStep5 = "5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı yapıştırın";
+translations.tr.androidStep6 = "6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap";
+translations.tr.androidStep7 = '7 - Sunucu adı için <b>growleaf</b> yaz. İsim ve şifre boş bırakılabilir';
+translations.tr.androidStep8 = "8 - Hazırsın";
+
+translations.id.androidStep1 = "1 - Unduh Power Tunnel terlebih dahulu";
+translations.id.androidStep2 = "2 - Buka Power Tunnel";
+translations.id.androidStep3 = "3 - Ketuk ikon 3 garis di kanan atas";
+translations.id.androidStep4 = "4 - Anda akan melihat teks Servers, ketuk ikon settings di samping";
+translations.id.androidStep5 = "5 - Ketuk Main File URL dan tempel link di bawah";
+translations.id.androidStep6 = "6 - Buka Power Tunnel dan login ke Growtopia";
+translations.id.androidStep7 = '7 - Masukkan nama server <b>growleaf</b>. Kosongkan username & password.';
+translations.id.androidStep8 = "8 - Selesai";
+
+// PC ve iOS adımlarını da ekleyebilirsiniz
+</script>
+
