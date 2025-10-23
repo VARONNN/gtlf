@@ -18,7 +18,7 @@ body { background:#111; color:#fff; overflow-x:hidden; position:relative; min-he
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  color: orange; /* 🍃 renk turuncu */
+  color: orange;
 }
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg); opacity:0; }
@@ -72,63 +72,6 @@ nav ul li a:hover::after { width:100%; }
 .server-info { max-width:800px; margin:50px auto; background:#222; padding:30px; border-radius:20px; box-shadow:0 0 25px #ff6600aa; text-align:center;}
 .server-info h2 { color:#ff8800; margin-bottom:20px;}
 .server-info p { font-size:1.1rem; line-height:1.5; }
-
-/* Modal */
-#start-modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.85);
-  justify-content:center;
-  align-items:center;
-  z-index:200;
-}
-.modal-content {
-  background:#222;
-  padding:40px;
-  border-radius:20px;
-  text-align:left;
-  box-shadow:0 0 30px #ff8800aa;
-  max-width:600px;
-  position:relative;
-}
-.modal-content h2 { color:#ff8800; margin-bottom:20px; font-size:2rem; text-align:center; }
-.modal-content button {
-  margin:10px;
-  padding:15px 40px;
-  font-size:1.2rem;
-  font-weight:bold;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background: #ff8800;
-  color:#fff;
-  transition:0.3s;
-  box-shadow:0 0 15px #ff880080;
-}
-.modal-content button:hover {
-  transform:scale(1.1);
-  box-shadow:0 0 30px #ff8800aa;
-}
-/* Çarpı butonu */
-.close-modal {
-  position:absolute;
-  top:15px;
-  right:20px;
-  font-size:1.5rem;
-  font-weight:bold;
-  background:#ff3300;
-  border:none;
-  color:#fff;
-  border-radius:50%;
-  width:35px;
-  height:35px;
-  cursor:pointer;
-  transition:0.3s;
-}
-.close-modal:hover { transform:scale(1.2); box-shadow:0 0 15px #ff3300aa; }
-.modal-text { margin-top:20px; font-size:1rem; line-height:1.5; }
 </style>
 </head>
 <body>
@@ -139,7 +82,7 @@ nav ul li a:hover::after { width:100%; }
     <li><a href="#home" id="menu-home">Home</a></li>
     <li><a href="#info" id="menu-info">Server Info</a></li>
     <li><a href="https://discord.gg/ShueAtdt44" target="_blank" class="discord-btn">Discord</a></li>
-    <li><a href="#shop" id="menu-shop-extra" class="discord-btn">Shop</a></li>
+    <li><a href="https://discord.gg/ShueAtdt44" target="_blank" id="menu-shop-extra" class="discord-btn">Shop</a></li>
     <li>
       <select class="language-select" onchange="changeLang(this.value)">
         <option value="en">English</option>
@@ -166,28 +109,6 @@ nav ul li a:hover::after { width:100%; }
   <p id="shop-desc">💰 Buy items, upgrades and special boosts directly from the shop!</p>
 </div>
 
-<!-- Modal -->
-<div id="start-modal">
-  <div class="modal-content" id="platform-modal">
-    <button class="close-modal" id="close-modal">&times;</button>
-    <h2 id="modal-title">Choose Your Platform</h2>
-    <button id="android-btn">Android</button>
-    <button id="pc-btn">PC</button>
-    <button id="ios-btn">iOS</button>
-    <div class="modal-text" id="android-text" style="display:none;">
-      <p>1 - Önce Güç Tüneli'ni indir</p>
-      <p>2 - Güç Tüneli'ne gir</p>
-      <p>3 - Sağ üst köşedeki 3 çizgi simgesine tıkla</p>
-      <p>4 - Sunucular metnini göreceksiniz. Sunucular metninin yanındaki Ayarlar simgesine tıklayın.</p>
-      <p>5 - Ana Dosya URL'si bölümünü tıklayın ve aşağıdaki bağlantıyı alana yapıştırın:</p>
-      <p><a href="https://gist.githubusercontent.com/VARONNN/7fe01f1ea0ec5e6e6f00c192e251e707/raw/defef1845c91900833708590b81cb50b94541eea/grow" target="_blank" style="color:#ff8800;">Link</a></p>
-      <p>6 - Güç Tüneli'ni aç ve Growtopia'ya giriş yap.</p>
-      <p>7 - Sunucu adı için <b>growleaf</b> yaz. Büyük harf kullanma. İsim ve şifre boş bırakılabilir.</p>
-      <p>8 - Hazırsın.</p>
-    </div>
-  </div>
-</div>
-
 <script>
 // Düşen yaprak emojileri
 for(let i=0;i<30;i++){
@@ -201,28 +122,9 @@ for(let i=0;i<30;i++){
   document.body.appendChild(leaf);
 }
 
-// Modal açma
-const startBtn = document.getElementById('start-btn');
-const startModal = document.getElementById('start-modal');
-const closeModal = document.getElementById('close-modal');
-const androidBtn = document.getElementById('android-btn');
-const androidText = document.getElementById('android-text');
-
-startBtn.addEventListener('click', () => {
-  startModal.style.display = 'flex';
-  androidText.style.display='none';
-});
-
-// Çarpı butonu ile kapatma
-closeModal.addEventListener('click', () => {
-  startModal.style.display = 'none';
-  androidText.style.display='none';
-});
-
-// Android butonuna tıklandığında bilgi göster ve linke yönlendir
-androidBtn.addEventListener('click', () => {
-  androidText.style.display='block';
-  window.open("https://www.mediafire.com/file/w6hwsjljnbh2t2p/powertunel.apk/file", "_blank");
+// Start butonu Discord'a yönlendirir
+document.getElementById('start-btn').addEventListener('click', () => {
+  window.open("https://discord.gg/ShueAtdt44", "_blank");
 });
 
 // Dil çevirisi
@@ -237,11 +139,7 @@ const translations = {
     shopDesc:"💰 Buy items, upgrades and special boosts directly from the shop!",
     startBtn:"Start",
     infoTitle:"Server Info",
-    infoDesc:"🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues.",
-    modalTitle:"Choose Your Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
+    infoDesc:"🟢 Our server is currently active and many people are online.<br>🌟 Our server will never close.<br>⚡ No lag issues."
   },
   tr:{
     bannerTitle:"🌟 GrowLeaf Sunucusu",
@@ -253,11 +151,7 @@ const translations = {
     shopDesc:"💰 Özel eşyaları, yükseltmeleri ve güçlendirmeleri mağazadan satın alabilirsin!",
     startBtn:"Başla",
     infoTitle:"Sunucu Bilgileri",
-    infoDesc:"🟢 Sunucumuz şu anda aktif ve birçok kişi bulunmakta.<br>🌟 Sunucumuz hiçbir zaman kapanmayacaktır.<br>⚡ Lag sorunumuz yoktur.",
-    modalTitle:"Platformunu Seç",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
+    infoDesc:"🟢 Sunucumuz şu anda aktif ve birçok kişi bulunmakta.<br>🌟 Sunucumuz hiçbir zaman kapanmayacaktır.<br>⚡ Lag sorunumuz yoktur."
   },
   id:{
     bannerTitle:"🌟 GrowLeaf Server",
@@ -269,11 +163,7 @@ const translations = {
     shopDesc:"💰 Beli item, upgrade, dan boost khusus langsung dari toko!",
     startBtn:"Mulai",
     infoTitle:"Informasi Server",
-    infoDesc:"🟢 Server kami saat ini aktif dan banyak orang online.<br>🌟 Server kami tidak akan pernah tutup.<br>⚡ Tidak ada masalah lag.",
-    modalTitle:"Pilih Platform",
-    androidBtn:"Android",
-    pcBtn:"PC",
-    iosBtn:"iOS"
+    infoDesc:"🟢 Server kami saat ini aktif dan banyak orang online.<br>🌟 Server kami tidak akan pernah tutup.<br>⚡ Tidak ada masalah lag."
   }
 };
 
@@ -288,114 +178,8 @@ function changeLang(lang){
   document.getElementById('start-btn').innerHTML = translations[lang].startBtn;
   document.getElementById('info-title').innerHTML = translations[lang].infoTitle;
   document.getElementById('info-desc').innerHTML = translations[lang].infoDesc;
-  document.getElementById('modal-title').innerHTML = translations[lang].modalTitle;
-  document.getElementById('android-btn').innerHTML = translations[lang].androidBtn;
-  document.getElementById('pc-btn').innerHTML = translations[lang].pcBtn;
-  document.getElementById('ios-btn').innerHTML = translations[lang].iosBtn;
 }
 </script>
 
 </body>
 </html>
-
-<!-- Hesap Aç / Kayıt Modal ve Navbar Butonları -->
-<style>
-.account-btn {
-  padding:10px 20px;
-  background:#ff6600;
-  color:#fff;
-  text-decoration:none;
-  border-radius:10px;
-  font-weight:bold;
-  transition:0.3s;
-  box-shadow:0 0 15px #ff880080;
-  cursor:pointer;
-  border:none;
-}
-.account-btn:hover {
-  background:#ff8800;
-  box-shadow:0 0 25px #ff8800aa;
-}
-.language-select {
-  background:linear-gradient(90deg,#ff6600,#ff8800);
-  color:#fff;
-  border-radius:10px;
-  padding:8px 12px;
-  font-weight:bold;
-  cursor:pointer;
-  border:none;
-  box-shadow:0 0 15px #ff880080;
-  transition:0.3s;
-}
-.language-select:hover {
-  box-shadow:0 0 25px #ff8800aa;
-}
-</style>
-
-<div id="account-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:300;">
-  <div style="background:#222; padding:40px; border-radius:20px; max-width:400px; width:90%; position:relative; text-align:center; box-shadow:0 0 30px #ff8800aa;">
-    <button class="close-modal" id="close-account-modal">&times;</button>
-    
-    <div id="login-form">
-      <h2 style="color:#ff8800;">Giriş Yap</h2>
-      <input type="text" placeholder="Kullanıcı Adı" id="login-user" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
-      <input type="password" placeholder="Şifre" id="login-pass" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
-      <button id="login-submit" style="padding:10px 20px; background:#ff8800; color:#fff; border:none; border-radius:6px; cursor:pointer;">Giriş</button>
-    </div>
-    
-    <div id="register-form" style="display:none;">
-      <h2 style="color:#ff8800;">Kayıt Ol</h2>
-      <input type="text" placeholder="Kullanıcı Adı" id="register-user" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
-      <input type="password" placeholder="Şifre" id="register-pass" style="width:80%; padding:10px; margin:10px 0; border-radius:6px; border:none;">
-      <button id="register-submit" style="padding:10px 20px; background:#ff8800; color:#fff; border:none; border-radius:6px; cursor:pointer;">Kayıt</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// Hesap butonları
-const accountModal = document.getElementById('account-modal');
-const loginBtn = document.createElement('button');
-const registerBtn = document.createElement('button');
-loginBtn.id = 'login-btn'; loginBtn.className = 'account-btn'; loginBtn.innerText = 'Giriş Yap';
-registerBtn.id = 'register-btn'; registerBtn.className = 'account-btn'; registerBtn.innerText = 'Kayıt Ol';
-document.querySelector('nav ul').appendChild(loginBtn);
-document.querySelector('nav ul').appendChild(registerBtn);
-
-const closeAccountModal = document.getElementById('close-account-modal');
-const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
-
-loginBtn.addEventListener('click', () => {
-  accountModal.style.display = 'flex';
-  loginForm.style.display = 'block';
-  registerForm.style.display = 'none';
-});
-registerBtn.addEventListener('click', () => {
-  accountModal.style.display = 'flex';
-  loginForm.style.display = 'none';
-  registerForm.style.display = 'block';
-});
-closeAccountModal.addEventListener('click', () => {
-  accountModal.style.display = 'none';
-});
-
-// Form butonları
-document.getElementById('login-submit').addEventListener('click', () => {
-  const user = document.getElementById('login-user').value;
-  const pass = document.getElementById('login-pass').value;
-  if(user && pass){
-    alert(`Giriş başarılı! Kullanıcı: ${user}`);
-    accountModal.style.display='none';
-  } else alert('Lütfen kullanıcı adı ve şifre girin.');
-});
-
-document.getElementById('register-submit').addEventListener('click', () => {
-  const user = document.getElementById('register-user').value;
-  const pass = document.getElementById('register-pass').value;
-  if(user && pass){
-    alert(`Kayıt başarılı! Kullanıcı: ${user}`);
-    accountModal.style.display='none';
-  } else alert('Lütfen kullanıcı adı ve şifre girin.');
-});
-</script>
